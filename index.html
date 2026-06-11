@@ -1089,6 +1089,19 @@
                 margin-bottom: 12px !important;
             }
 
+            /* CTA Videos Grid - Mobile */
+            div[style*="grid-template-columns: repeat(2, 1fr)"][style*="gap: 20px"] {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+
+            div[style*="grid-template-columns: repeat(2, 1fr)"][style*="gap: 20px"] a {
+                width: 100% !important;
+                display: block !important;
+                padding: 14px 16px !important;
+                font-size: 12px !important;
+            }
+
             .fade-in-up,
             .fade-in-left,
             .fade-in-right {
@@ -1699,8 +1712,17 @@
                     <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Experiencia inmersiva de un destino cultural con historia y tradición.</p>
                 </div>
 
-                <div style="margin-top: 60px; padding: 32px; background: var(--white); border: 1px solid var(--border-gray); text-align: center;">
-                    <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Más producciones disponibles. Contenido personalizado para destinos, experiencias y narrativas transformadoras.</p>
+                <div style="margin-top: 60px; padding: 32px; background: var(--white); border: 1px solid var(--border-gray);">
+                    <p style="font-size: 13px; color: var(--text-secondary); margin: 0 0 32px 0; text-align: center;">Más producciones disponibles. Accede a nuestros videos adicionales:</p>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                        <a href="https://drive.google.com/file/d/17g7EXlKG1QMLAGgCkOQvXtlW4H0Nd2qD/view?usp=sharing" target="_blank" style="display: inline-block; padding: 16px 24px; background: var(--black); color: var(--white); text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.5px; text-align: center; border: 2px solid var(--black); transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: pointer;">
+                            VIDEO PUERTO AVENTURAS
+                        </a>
+                        <a href="https://drive.google.com/file/d/1EW7HF6HEOX9nPFG16aA1a2TaLsko8Rj6/view?usp=sharing" target="_blank" style="display: inline-block; padding: 16px 24px; background: var(--black); color: var(--white); text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.5px; text-align: center; border: 2px solid var(--black); transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: pointer;">
+                            VIDEO PININFARINA
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
