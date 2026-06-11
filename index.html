@@ -110,51 +110,74 @@
             padding: 120px 60px;
         }
 
-        /* HERO */
+        /* HERO / EXECUTIVE SUMMARY */
         .hero {
             min-height: calc(100vh - 80px);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
         }
 
         .hero h1 {
-            font-size: 64px;
+            font-size: 56px;
             font-weight: 700;
             letter-spacing: -1.5px;
-            margin-bottom: 20px;
+            margin-bottom: 60px;
             line-height: 1.2;
+            max-width: 900px;
         }
 
-        .hero p {
-            font-size: 18px;
+        .executive-summary {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .summary-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .summary-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 60px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .summary-content h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .summary-content p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .summary-list {
+            font-size: 14px;
+            color: var(--text-secondary);
             line-height: 1.8;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 16px 48px;
-            background: var(--black);
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            border: 2px solid var(--black);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: pointer;
-            border-radius: 0;
+        .summary-list li {
+            margin-bottom: 8px;
+            margin-left: 20px;
         }
 
-        .cta-button:hover {
-            background: var(--white);
+        .summary-list li::marker {
             color: var(--black);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         /* SECTION TITLES */
@@ -572,11 +595,63 @@
     </header>
 
     <main>
-        <!-- HERO -->
+        <!-- EXECUTIVE SUMMARY -->
         <section class="hero">
-            <h1>Strategic Roadmap 2026</h1>
-            <p>Generación de leads orgánicos para jubilados. Estrategia SEO, AEO y GEO sin presupuesto publicitario. 6 meses, 9 landing pages, 30 artículos de blog.</p>
-            <button class="cta-button">Ver propuesta completa</button>
+            <h1>Estrategia de Generación de Leads Orgánicos — Ciudad Maya Koba</h1>
+
+            <div class="executive-summary">
+                <div class="summary-block">
+                    <div>
+                        <div class="summary-label">Objetivo</div>
+                        <div class="summary-content">
+                            <p>Generar 300-450 leads orgánicos mensuales desde jubilados y retirados de USA y Canada, posicionando Ciudad Maya Koba como destino de retiro premium en México.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-block">
+                    <div>
+                        <div class="summary-label">Alcance</div>
+                        <div class="summary-content">
+                            <ul class="summary-list">
+                                <li><strong>9 landing pages</strong> regionalizadas (5 USA, 4 Canada)</li>
+                                <li><strong>30 artículos</strong> de blog optimizados (3-5k palabras)</li>
+                                <li><strong>20 AEO pages</strong> para LLMs (ChatGPT, Perplexity, Google SGE)</li>
+                                <li><strong>Link-earning strategy</strong> de alta autoridad</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-block">
+                    <div>
+                        <div class="summary-label">Timeline</div>
+                        <div class="summary-content">
+                            <p><strong>6 meses</strong> de ejecución estructurada:</p>
+                            <ul class="summary-list">
+                                <li>Meses 1-2: Foundation & Research</li>
+                                <li>Meses 2-4: Content & AEO Production</li>
+                                <li>Meses 4-6: GEO Launch & Optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-block">
+                    <div>
+                        <div class="summary-label">Inversión</div>
+                        <div class="summary-content">
+                            <p><strong>Sin presupuesto publicitario.</strong> Estrategia 100% orgánica basada en:</p>
+                            <ul class="summary-list">
+                                <li>SEO técnico y contenido</li>
+                                <li>Answer Engine Optimization</li>
+                                <li>Posicionamiento geográfico local</li>
+                                <li>Link earning de calidad (sin compra de links)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- TIMELINE -->
