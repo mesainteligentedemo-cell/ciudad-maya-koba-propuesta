@@ -3,992 +3,848 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propuesta: Posicionamiento GEO/AEO/SEO — Ciudad Maya Koba</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Ciudad Maya Koba — Strategic Roadmap</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Poppins:wght@300;400;500;600;700&display=swap');
-
         * {
-            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Instrument Serif', serif;
+        :root {
+            --white: #FFFFFF;
+            --black: #000000;
+            --dark-gray: #1A1A1A;
+            --light-gray: #F5F5F5;
+            --border-gray: #E0E0E0;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #1e40af 0%, #06b6d4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .card-hover {
-            transition: all 0.3s ease;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+            background: var(--white);
+            color: var(--text-primary);
+            line-height: 1.6;
+            letter-spacing: -0.3px;
         }
 
-        .card-hover:hover {
-            transform: translateY(-4px);
+        /* CANVAS BACKGROUND */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gray);
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--black);
+        }
+
+        nav {
+            margin-left: auto;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--black);
+            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        nav a:hover {
+            color: var(--black);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* MAIN CONTENT */
+        main {
+            padding-top: 80px;
+        }
+
+        section {
+            padding: 120px 60px;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 60px;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 48px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--black);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            border-radius: 0;
+        }
+
+        .cta-button:hover {
+            background: var(--white);
+            color: var(--black);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .scroll-smooth {
-            scroll-behavior: smooth;
+        /* SECTION TITLES */
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            letter-spacing: -1px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        /* TIMELINE SECTION */
+        .timeline-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 100%;
+            background: var(--border-gray);
+        }
+
+        .timeline-items {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 40px;
+            position: relative;
+        }
+
+        .timeline-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 0;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .timeline-month {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--black);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            width: 16px;
+            height: 16px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-content {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            min-height: 60px;
+        }
+
+        /* PILLARS SECTION */
+        .pillars {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .pillar-card {
+            padding: 40px;
+            background: var(--light-gray);
+            border: 1px solid var(--border-gray);
+            border-radius: 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            z-index: -1;
+            transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .pillar-card:hover::before {
+            left: 0;
+        }
+
+        .pillar-card:hover {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            transform: translateY(-10px);
+        }
+
+        .pillar-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 24px;
+        }
+
+        .pillar-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .pillar-subtitle {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .pillar-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* LANDING PAGES GRID */
+        .landing-pages {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pages-intro {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .page-card {
+            aspect-ratio: 1;
+            background: var(--light-gray);
+            border: 1px solid var(--border-gray);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            z-index: -1;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: scaleY(0);
+            transform-origin: top;
+        }
+
+        .page-card:hover::after {
+            transform: scaleY(1);
+        }
+
+        .page-card:hover {
+            transform: translateY(-12px);
+        }
+
+        .page-card:hover .page-state,
+        .page-card:hover .page-name {
+            color: var(--white);
+        }
+
+        .page-state {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            transition: color 0.4s ease;
+        }
+
+        .page-name {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            transition: color 0.4s ease;
+        }
+
+        /* BLOG SECTION */
+        .blog-strategy {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .blog-text h3 {
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+
+        .blog-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .blog-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            padding: 24px;
+            background: var(--light-gray);
+            border: 1px solid var(--border-gray);
+            transition: all 0.4s ease;
+        }
+
+        .stat-box:hover {
+            background: var(--white);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        /* LEAD FUNNEL */
+        .lead-funnel {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .funnel-stage {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .funnel-number {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            min-width: 40px;
+        }
+
+        .funnel-bar {
+            flex: 1;
+            height: 3px;
+            background: var(--border-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .funnel-bar::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            height: 100%;
+            background: var(--black);
+            width: 100%;
+            transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: fillBar 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes fillBar {
+            to {
+                left: 0;
+            }
+        }
+
+        .funnel-stage:nth-child(2) .funnel-bar::before {
+            animation-delay: 0.2s;
+        }
+
+        .funnel-stage:nth-child(3) .funnel-bar::before {
+            animation-delay: 0.4s;
+        }
+
+        .funnel-stage:nth-child(4) .funnel-bar::before {
+            animation-delay: 0.6s;
+        }
+
+        .funnel-desc {
+            min-width: 200px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 60px;
+            border-top: 1px solid var(--border-gray);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 30px;
+            }
+
+            header {
+                padding: 0 30px;
+            }
+
+            nav {
+                gap: 20px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .pillar-grid,
+            .pages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-items {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .blog-intro {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            h2 {
+                font-size: 36px;
+            }
         }
     </style>
 </head>
-<body class="bg-white text-gray-900">
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold gradient-text">Ciudad Maya Koba</h1>
-            <div class="hidden md:flex gap-8">
-                <a href="#resumen" class="text-gray-600 hover:text-blue-600">Resumen</a>
-                <a href="#situacion" class="text-gray-600 hover:text-blue-600">Situación</a>
-                <a href="#estrategia" class="text-gray-600 hover:text-blue-600">Estrategia</a>
-                <a href="#flujograma" class="text-gray-600 hover:text-blue-600">Flujograma</a>
-                <a href="#timeline" class="text-gray-600 hover:text-blue-600">Timeline</a>
-            </div>
-        </div>
-    </nav>
+<body>
+    <canvas id="canvas-bg"></canvas>
 
-    <!-- Hero -->
-    <section class="bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-700 text-white py-20">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">Estrategia Digital: Top 3 en Google</h1>
-            <p class="text-xl md:text-2xl text-blue-100 mb-8">GEO + AEO + SEO para Jubilados USA/Canada</p>
-            <p class="text-lg text-blue-50 max-w-3xl mx-auto">Cómo posicionar Ciudad Maya Koba como el destino #1 de jubilación en Riviera Maya: flujogramas, timeline, metodología sin limite de budget</p>
-            <div class="mt-10 flex flex-col md:flex-row gap-4 justify-center">
-                <div class="bg-white/20 backdrop-blur px-6 py-3 rounded-lg">
-                    <p class="text-sm text-blue-100">Timeline Recomendado</p>
-                    <p class="text-3xl font-bold">6 Meses</p>
-                </div>
-                <div class="bg-white/20 backdrop-blur px-6 py-3 rounded-lg">
-                    <p class="text-sm text-blue-100">Keywords Target</p>
-                    <p class="text-3xl font-bold">50+</p>
-                </div>
-                <div class="bg-white/20 backdrop-blur px-6 py-3 rounded-lg">
-                    <p class="text-sm text-blue-100">Posiciones Top 3</p>
-                    <p class="text-3xl font-bold">20+</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <header>
+        <div class="logo">CIUDAD MAYA KOBA</div>
+        <nav>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#strategy">Estrategia</a>
+            <a href="#landing">Landing Pages</a>
+            <a href="#blog">Blog</a>
+            <a href="#results">Resultados</a>
+        </nav>
+    </header>
 
-    <!-- Resumen Ejecutivo -->
-    <section id="resumen" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Resumen Ejecutivo</h2>
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <h1>Strategic Roadmap 2026</h1>
+            <p>Generación de leads orgánicos para jubilados. Estrategia SEO, AEO y GEO sin presupuesto publicitario. 6 meses, 9 landing pages, 30 artículos de blog.</p>
+            <button class="cta-button">Ver propuesta completa</button>
+        </section>
 
-            <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <div class="card-hover bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="text-2xl font-bold mb-4">El Objetivo</h3>
-                    <p class="text-gray-600">Posicionar Ciudad Maya Koba como el destino premium de jubilación en Riviera Maya para mercado norteamericano (USA/Canada), capturando leads de alta intención y conversión.</p>
-                </div>
-
-                <div class="card-hover bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                    <div class="text-4xl mb-4">📊</div>
-                    <h3 class="text-2xl font-bold mb-4">El Mercado</h3>
-                    <p class="text-gray-600"><strong>25,000+ búsquedas mensuales</strong> de jubilados USA/Canada en "retire Mexico Riviera Maya". Mercado sin saturación, alto poder de compra ($2.8 billones anuales).</p>
-                </div>
-
-                <div class="card-hover bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                    <div class="text-4xl mb-4">💰</div>
-                    <h3 class="text-2xl font-bold mb-4">El Retorno</h3>
-                    <p class="text-gray-600">Con inversión de $15k/mes en 6 meses: <strong>350-500 leads cualificados</strong>, 15-25% conversion = <strong>50-120 clientes nuevos</strong> (proyectado).</p>
-                </div>
-            </div>
-
-            <div class="bg-blue-50 border-l-4 border-blue-600 p-8 rounded-lg">
-                <h3 class="text-2xl font-bold mb-4">¿Por qué AHORA?</h3>
-                <ul class="space-y-3 text-gray-700">
-                    <li class="flex items-start gap-3">
-                        <span class="text-blue-600 font-bold">✓</span>
-                        <span><strong>Post-COVID boom:</strong> Jubilados buscan destinos con clima + costo bajo. México es opción #1 en Google Trends.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-blue-600 font-bold">✓</span>
-                        <span><strong>Answer Engines revolucionan búsqueda:</strong> ChatGPT, Perplexity, Google SGE reemplazan Google tradicional. 90% de competencia NO está optimizada para AEO.</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-blue-600 font-bold">✓</span>
-                        <span><strong>Ventana de oportunidad:</strong> Próximos 6-12 meses = momento ideal para dominar keyword landscape antes que competidores se adapten.</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Situación Actual -->
-    <section id="situacion" class="py-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Análisis: Situación Actual vs. Oportunidad</h2>
-
-            <div class="grid md:grid-cols-2 gap-12 mb-12">
-                <!-- Actual -->
-                <div class="bg-red-50 border-2 border-red-200 p-8 rounded-xl">
-                    <h3 class="text-2xl font-bold text-red-700 mb-6">📍 Hoy: Ciudad Maya Koba</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3">
-                            <span class="text-red-600">✗</span>
-                            <span>Cero posicionamiento en búsquedas norteamericanas</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-red-600">✗</span>
-                            <span>No aparece en Answer Engines (ChatGPT, Perplexity)</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-red-600">✗</span>
-                            <span>Sin estrategia de geo-targeting a USA/Canada</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-red-600">✗</span>
-                            <span>Link profile débil (pocos links de autoridad)</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-red-600">✗</span>
-                            <span>Contenido generic, no optimizado para intención</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-red-600">✗</span>
-                            <span>Tasa de conversión: <strong>0%</strong> (no hay leads)</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Futuro -->
-                <div class="bg-green-50 border-2 border-green-200 p-8 rounded-xl">
-                    <h3 class="text-2xl font-bold text-green-700 mb-6">🚀 En 6 meses: Con esta propuesta</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600">✓</span>
-                            <span>Ranking #1-3 en 40+ keywords de alto valor</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600">✓</span>
-                            <span>Citado como fuente en ChatGPT/Perplexity para retiro</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600">✓</span>
-                            <span>Anuncios GEO en USA/Canada con 4-6% CTR</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600">✓</span>
-                            <span>50+ links de media autoridad (DA 40+)</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600">✓</span>
-                            <span>150+ artículos optimizados + guías descargables</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-green-600">✓</span>
-                            <span>Tasa de conversión: <strong>15-25%</strong> (lead qualified)</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="bg-blue-900 text-white p-8 rounded-xl">
-                <h3 class="text-2xl font-bold mb-4">📈 Datos del Mercado</h3>
-                <div class="grid md:grid-cols-4 gap-6">
-                    <div>
-                        <p class="text-blue-200 text-sm">Búsquedas mensuales</p>
-                        <p class="text-3xl font-bold">25,000+</p>
-                        <p class="text-xs text-blue-300">USA/Canada en "retire Mexico"</p>
-                    </div>
-                    <div>
-                        <p class="text-blue-200 text-sm">Poder de compra anual</p>
-                        <p class="text-3xl font-bold">$2.8T</p>
-                        <p class="text-xs text-blue-300">Mercado jubilados global</p>
-                    </div>
-                    <div>
-                        <p class="text-blue-200 text-sm">Competencia posicionada</p>
-                        <p class="text-3xl font-bold">3-5</p>
-                        <p class="text-xs text-blue-300">Riviera Maya, sin especialización</p>
-                    </div>
-                    <div>
-                        <p class="text-blue-200 text-sm">Oportunidad de gap</p>
-                        <p class="text-3xl font-bold">95%</p>
-                        <p class="text-xs text-blue-300">Mercado sin saturar</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Estrategia Detallada -->
-    <section id="estrategia" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Estrategia Completa: Los 3 Pilares</h2>
-
-            <!-- PILAR 1: GEO -->
-            <div class="mb-16 bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                <div class="flex items-start gap-4 mb-6">
-                    <div class="text-5xl">📍</div>
-                    <div>
-                        <h3 class="text-3xl font-bold mb-2">PILAR 1: GEO (Geo-Targeting)</h3>
-                        <p class="text-gray-600"><strong>40% del presupuesto</strong> | Resultado: Leads de alta intención</p>
-                    </div>
-                </div>
-
-                <div class="bg-blue-50 p-6 rounded-lg mb-6">
-                    <h4 class="font-bold text-lg mb-3">¿Qué es?</h4>
-                    <p class="text-gray-700">Mostrar anuncios SOLO a jubilados en USA/Canada que buscan "retire Mexico" o están buscando propiedades. Usamos geofencing + datos demográficos para precisión quirúrgica.</p>
-                </div>
-
-                <h4 class="font-bold text-lg mb-4">Acciones Concretas:</h4>
-                <div class="space-y-4 mb-6">
-                    <div class="border-l-4 border-blue-600 pl-4">
-                        <p class="font-bold text-gray-900">1. Google Ads GEO (Búsqueda + Display)</p>
-                        <p class="text-gray-600">Campaigns segmentadas por provincia:</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• <strong>Canadá:</strong> Ontario, BC, Alberta, Quebec</li>
-                            <li>• <strong>USA:</strong> California, Florida, Arizona, Texas, Colorado</li>
-                            <li>• Keywords: "retire Mexico cheap", "Riviera Maya retirement community", "Mexico visa retiro"</li>
-                            <li>• Budget: $3,000/mes</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-l-4 border-cyan-600 pl-4">
-                        <p class="font-bold text-gray-900">2. Meta Ads (Facebook + Instagram)</p>
-                        <p class="text-gray-600">Targeting: Edad 55+, intereses en retiro/viajes, ingresos $100k+</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• Carrousel ads mostrando propiedades (12-15 videos/imágenes)</li>
-                            <li>• Landing pages específicas por provincia</li>
-                            <li>• Retargeting de visitantes del sitio</li>
-                            <li>• Budget: $2,000/mes</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-l-4 border-purple-600 pl-4">
-                        <p class="font-bold text-gray-900">3. Geofencing en Riviera Maya</p>
-                        <p class="text-gray-600">Anuncios a turistas/visitantes en zona de Ciudad Maya Koba</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• Hoteles, restaurantes, tours en Riviera Maya</li>
-                            <li>• Mensajes: "Pensando en jubilarte aquí? Visita Ciudad Maya Koba"</li>
-                            <li>• Conversion: De turista a prospecto de residente</li>
-                            <li>• Budget: $1,000/mes</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-600">
-                    <p class="font-bold text-green-900">✓ Resultado esperado:</p>
-                    <p class="text-gray-700">200-300 leads/mes con 15-20% tasa de conversión = 30-60 clientes potenciales cualificados</p>
-                </div>
-            </div>
-
-            <!-- PILAR 2: AEO -->
-            <div class="mb-16 bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                <div class="flex items-start gap-4 mb-6">
-                    <div class="text-5xl">🤖</div>
-                    <div>
-                        <h3 class="text-3xl font-bold mb-2">PILAR 2: AEO (Answer Engine Optimization)</h3>
-                        <p class="text-gray-600"><strong>30% del presupuesto</strong> | Resultado: Autoridad en AI searches</p>
-                    </div>
-                </div>
-
-                <div class="bg-purple-50 p-6 rounded-lg mb-6">
-                    <h4 class="font-bold text-lg mb-3">¿Qué es?</h4>
-                    <p class="text-gray-700">Optimizar tu sitio para ser citado como fuente en respuestas de ChatGPT, Perplexity, Google SGE y otros AI. Cuando alguien pregunta "Where should I retire in Mexico?", queremos que tu contenido sea LA respuesta.</p>
-                </div>
-
-                <h4 class="font-bold text-lg mb-4">Acciones Concretas:</h4>
-                <div class="space-y-4 mb-6">
-                    <div class="border-l-4 border-purple-600 pl-4">
-                        <p class="font-bold text-gray-900">1. Create Answer Pages (20 páginas)</p>
-                        <p class="text-gray-600">Artículos profundos que responden preguntas exactas:</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• "How to retire in Mexico on $2,000/month — Complete 2024 Guide"</li>
-                            <li>• "Best retirement communities in Riviera Maya for Americans"</li>
-                            <li>• "Mexico retirement visa requirements for US/Canada citizens"</li>
-                            <li>• "Quintana Roo vs other states: Where to retire in Mexico"</li>
-                            <li>• "Cost of living Mexico 2024 + housing costs"</li>
-                            <li>• Cada artículo: 3,000-5,000 palabras + datos + casos reales</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-l-4 border-indigo-600 pl-4">
-                        <p class="font-bold text-gray-900">2. Content Distribution</p>
-                        <p class="text-gray-600">Publicar contenido en plataformas que AEOs escanean:</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• LinkedIn articles (2-3/semana) → visto por Perplexity, ChatGPT</li>
-                            <li>• Medium publications en retiro/viajes</li>
-                            <li>• Quora answers detalladas (con link a City Maya Koba)</li>
-                            <li>• Guest posts en sitios de expat/retiro (DA 40+)</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-l-4 border-blue-600 pl-4">
-                        <p class="font-bold text-gray-900">3. Optimize for AI Queries</p>
-                        <p class="text-gray-600">Técnica: responder conversacionalmente, no como SEO tradicional</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• Usar preguntas reales que hace la gente en ChatGPT</li>
-                            <li>• Incluir datos concretos (números, números, ejemplos reales)</li>
-                            <li>• Formato: FAQ + case studies + guías paso-a-paso</li>
-                            <li>• Schema markup (FAQSchema, ArticleSchema) para aparecer en Google SGE</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-l-4 border-cyan-600 pl-4">
-                        <p class="font-bold text-gray-900">4. Build Authority</p>
-                        <p class="text-gray-600">Ser citado = ganar autoridad en topicality</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• Prensa: Artículos en outlets sobre retiro en México</li>
-                            <li>• Experto quotes: Ser fuente citada en reportajes</li>
-                            <li>• Backlinks de podcasts/interviews sobre retiro</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-600">
-                    <p class="font-bold text-purple-900">✓ Resultado esperado:</p>
-                    <p class="text-gray-700">Aparecer en respuestas de ChatGPT/Perplexity = 50-100 leads/mes de "gente que preguntó a AI y llegó a tu sitio"</p>
-                </div>
-            </div>
-
-            <!-- PILAR 3: SEO -->
-            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                <div class="flex items-start gap-4 mb-6">
-                    <div class="text-5xl">🔍</div>
-                    <div>
-                        <h3 class="text-3xl font-bold mb-2">PILAR 3: SEO (Posicionamiento Orgánico)</h3>
-                        <p class="text-gray-600"><strong>30% del presupuesto</strong> | Resultado: Tráfico gratuito perpetuo</p>
-                    </div>
-                </div>
-
-                <div class="bg-green-50 p-6 rounded-lg mb-6">
-                    <h4 class="font-bold text-lg mb-3">¿Qué es?</h4>
-                    <p class="text-gray-700">Posicionarse en Google de forma orgánica para keywords de alto valor. A diferencia de Ads, SEO genera tráfico GRATIS perpetuamente (inverso 1 vez, beneficio de por vida).</p>
-                </div>
-
-                <h4 class="font-bold text-lg mb-4">Acciones Concretas:</h4>
-                <div class="space-y-4 mb-6">
-                    <div class="border-l-4 border-green-600 pl-4">
-                        <p class="font-bold text-gray-900">1. Technical SEO Audit + Fix</p>
-                        <p class="text-gray-600">Garantizar que Google pueda rastrear/indexar bien:</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• Velocidad de carga (target: <2s en móvil)</li>
-                            <li>• Core Web Vitals: LCP, FID, CLS en verde</li>
-                            <li>• Mobile-first indexing: sitio optimizado para celular</li>
-                            <li>• Schema markup: Organization, LocalBusiness, FAQPage</li>
-                            <li>• XML sitemaps, robots.txt optimizados</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-l-4 border-green-600 pl-4">
-                        <p class="font-bold text-gray-900">2. Keyword Research + On-Page Optimization</p>
-                        <p class="text-gray-600">Identificar 50+ keywords high-value y optimizar cada página:</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• Primarias (volumen alto, intención): "retire Mexico Riviera Maya"</li>
-                            <li>• Secundarias (volumen medio): "best retirement community Quintana Roo"</li>
-                            <li>• Long-tail (alta intención): "retire Mexico $2000 month guide"</li>
-                            <li>• Cada página: título + meta description + H1/H2/H3 optimizados</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-l-4 border-green-600 pl-4">
-                        <p class="font-bold text-gray-900">3. Content Strategy (30+ artículos)</p>
-                        <p class="text-gray-600">Crear contenido premium que rank y convierte:</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• Blog posts: 2,000-4,000 palabras, optimizadas, multimedia</li>
-                            <li>• Guías descargables (PDF) para lead capture</li>
-                            <li>• Comparativas vs. competencia (Riviera Maya, Tulum, etc.)</li>
-                            <li>• Case studies: "How [Real Person] Retired in CMK on $1,800/month"</li>
-                            <li>• Video content: Tours, testimonials (embedidos)</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-l-4 border-green-600 pl-4">
-                        <p class="font-bold text-gray-900">4. Link Building (Link Juice)</p>
-                        <p class="text-gray-600">Conseguir links de sitios con autoridad (Domain Authority 40+):</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• Guest posts en blogs de expat/retiro (Internations, ExpatForum)</li>
-                            <li>• Prensa: Links en artículos de medios sobre retiro en México</li>
-                            <li>• Directorios: Listados en Nomadic List, InterNations, Numbeo</li>
-                            <li>• Target: 50+ links de DA 40+ en 6 meses</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-l-4 border-green-600 pl-4">
-                        <p class="font-bold text-gray-900">5. Local SEO</p>
-                        <p class="text-gray-600">Dominar búsquedas locales de Quintana Roo:</p>
-                        <ul class="text-gray-600 ml-4 mt-2 space-y-1">
-                            <li>• Google Business Profile optimizado</li>
-                            <li>• Reseñas 5⭐ en Google, TripAdvisor, ExpatForum</li>
-                            <li>• Maps ranking para "retirement community Quintana Roo"</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-600">
-                    <p class="font-bold text-green-900">✓ Resultado esperado:</p>
-                    <p class="text-gray-700">Ranking #1-3 en 40+ keywords = 150-200 leads/mes de tráfico orgánico gratuito (que crece con el tiempo)</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline -->
-    <section class="py-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Timeline de Ejecución</h2>
-
-            <div class="space-y-6">
-                <div class="card-hover bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-600">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-blue-100 text-blue-700 font-bold px-4 py-2 rounded-lg min-w-max">Mes 1-2</div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">Discovery + Setup</h3>
-                            <ul class="text-gray-600 space-y-1 ml-4">
-                                <li>• Auditoría competitiva (50+ competidores)</li>
-                                <li>• Configuración Google Ads, Meta, GA4, GSC</li>
-                                <li>• Creación 10 landing pages por región</li>
-                                <li>• Technical SEO audit + roadmap de fixes</li>
-                                <li>• Investigación profunda de keywords (5,000+ búsquedas)</li>
-                            </ul>
+        <!-- TIMELINE -->
+        <section id="roadmap">
+            <h2>Timeline — 6 Meses</h2>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div class="timeline-items">
+                    <div class="timeline-item">
+                        <div class="timeline-month">Mes 1</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Foundation</strong><br>
+                            Technical audit, keyword research, content calendar
                         </div>
                     </div>
-                </div>
-
-                <div class="card-hover bg-white p-6 rounded-xl shadow-sm border-l-4 border-purple-600">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-purple-100 text-purple-700 font-bold px-4 py-2 rounded-lg min-w-max">Mes 3-4</div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">Launch + First Content</h3>
-                            <ul class="text-gray-600 space-y-1 ml-4">
-                                <li>• Lanzamiento campaigns GEO en USA/Canada</li>
-                                <li>• Publicación primera ola: 10 artículos AEO</li>
-                                <li>• On-page SEO optimization (250+ páginas)</li>
-                                <li>• Inicio de link building outreach</li>
-                                <li>• Setup de tracking y dashboards de conversión</li>
-                            </ul>
+                    <div class="timeline-item">
+                        <div class="timeline-month">Mes 2</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Setup</strong><br>
+                            Landing pages structure, first articles
                         </div>
                     </div>
-                </div>
-
-                <div class="card-hover bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-600">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-green-100 text-green-700 font-bold px-4 py-2 rounded-lg min-w-max">Mes 5-6</div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">Optimization + Scaling</h3>
-                            <ul class="text-gray-600 space-y-1 ml-4">
-                                <li>• Análisis de data: qué convierte, qué no</li>
-                                <li>• Ajuste campaigns GEO (ROAS optimization)</li>
-                                <li>• Publicación 20 artículos adicionales</li>
-                                <li>• Campañas de retargeting (website visitors)</li>
-                                <li>• Primeros rankings en keywords competitivos</li>
-                            </ul>
+                    <div class="timeline-item">
+                        <div class="timeline-month">Mes 3</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Content</strong><br>
+                            Blog articles + AEO pages
                         </div>
                     </div>
-                </div>
-
-                <div class="card-hover bg-white p-6 rounded-xl shadow-sm border-l-4 border-cyan-600">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-cyan-100 text-cyan-700 font-bold px-4 py-2 rounded-lg min-w-max">Mes 6+</div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">Growth Acceleration</h3>
-                            <ul class="text-gray-600 space-y-1 ml-4">
-                                <li>• Scaling campaigns con mejor ROAS</li>
-                                <li>• Dominio de 40+ keywords en Google (rankings #1-3)</li>
-                                <li>• Integración leads con CRM para nurturing</li>
-                                <li>• Reports mensuales detallados (ROI, conversiones, trends)</li>
-                                <li>• Expansión opcional a más regiones</li>
-                            </ul>
+                    <div class="timeline-item">
+                        <div class="timeline-month">Mes 4</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Optimization</strong><br>
+                            Link earning, guest posts
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-month">Mes 5</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Launch</strong><br>
+                            GEO pages live, local SEO
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-month">Mes 6</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Scaling</strong><br>
+                            Optimization, first results
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Flujograma: Cómo Llegar a Top 3 -->
-    <section id="flujograma" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Flujograma: Ruta a Top 3 en Google</h2>
-
-            <div class="bg-white p-8 rounded-xl shadow-sm border-2 border-blue-200 mb-12">
-                <h3 class="text-2xl font-bold mb-8 text-center">Flujo de Optimización SEO → Rankings #1-3</h3>
-
-                <div class="space-y-6">
-                    <!-- Paso 1 -->
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-blue-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">1</div>
-                        <div class="flex-1 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
-                            <h4 class="font-bold text-lg mb-2">Keyword Research Profundo</h4>
-                            <p class="text-gray-700 mb-3">Identificar 50+ keywords ordenados por: volumen, competencia, intención de búsqueda, conversion rate</p>
-                            <div class="text-sm text-gray-600 bg-white p-3 rounded">
-                                <strong>Deliverable:</strong> Hoja de cálculo con keywords priorizados (primarios, secundarios, long-tail)
-                            </div>
-                        </div>
+        <!-- PILLARS -->
+        <section id="strategy">
+            <h2>Estrategia — 3 Pilares</h2>
+            <div class="pillars">
+                <div class="pillar-grid">
+                    <div class="pillar-card">
+                        <svg class="pillar-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="28" stroke="currentColor" stroke-width="2"/>
+                            <path d="M30 10 L40 35 L50 35 L42 42 L45 60 L30 52 L15 60 L18 42 L10 35 L20 35 Z" fill="currentColor"/>
+                        </svg>
+                        <div class="pillar-subtitle">30% de la estrategia</div>
+                        <h3 class="pillar-title">SEO</h3>
+                        <p class="pillar-description">Blog de 30 artículos, optimización técnica, 3-5 guest posts estratégicos, link earning de alta autoridad.</p>
                     </div>
 
-                    <!-- Arrow -->
-                    <div class="flex justify-center text-3xl text-blue-400">↓</div>
-
-                    <!-- Paso 2 -->
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-purple-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">2</div>
-                        <div class="flex-1 bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
-                            <h4 class="font-bold text-lg mb-2">Content Gap Analysis</h4>
-                            <p class="text-gray-700 mb-3">Comparar tu sitio vs. top 3 competidores: qué contenido tienen, qué falta, qué está mejor/peor</p>
-                            <div class="text-sm text-gray-600 bg-white p-3 rounded">
-                                <strong>Deliverable:</strong> Matriz de gaps + lista de 30+ artículos a crear
-                            </div>
-                        </div>
+                    <div class="pillar-card">
+                        <svg class="pillar-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="12" y="12" width="36" height="36" stroke="currentColor" stroke-width="2"/>
+                            <path d="M24 20 L30 30 L36 20" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M20 30 L30 40 L40 30" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                        <div class="pillar-subtitle">35% de la estrategia</div>
+                        <h3 class="pillar-title">AEO</h3>
+                        <p class="pillar-description">20 answer pages para ChatGPT, Perplexity y Google SGE. Optimización para LLMs. Menciones en Medium, LinkedIn, Quora.</p>
                     </div>
 
-                    <!-- Arrow -->
-                    <div class="flex justify-center text-3xl text-purple-400">↓</div>
-
-                    <!-- Paso 3 -->
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-green-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">3</div>
-                        <div class="flex-1 bg-green-50 p-6 rounded-lg border-l-4 border-green-600">
-                            <h4 class="font-bold text-lg mb-2">Technical SEO Audit + Fixes</h4>
-                            <p class="text-gray-700 mb-3">Velocidad, Core Web Vitals, mobile-first, schema markup, crawlability, indexación</p>
-                            <div class="text-sm text-gray-600 bg-white p-3 rounded">
-                                <strong>Deliverable:</strong> Sitio con score de velocidad 90+/100, CWV en verde, schema completo
-                            </div>
-                        </div>
+                    <div class="pillar-card">
+                        <svg class="pillar-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="22" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M30 30 L30 45" stroke="currentColor" stroke-width="2"/>
+                            <path d="M22 38 L30 45 L38 38" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                        <div class="pillar-subtitle">35% de la estrategia</div>
+                        <h3 class="pillar-title">GEO</h3>
+                        <p class="pillar-description">9 landing pages por estado/provincia. Local SEO schema. Content geotagged. Ubicación y comunidades.</p>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Arrow -->
-                    <div class="flex justify-center text-3xl text-green-400">↓</div>
+        <!-- LANDING PAGES -->
+        <section id="landing">
+            <h2>Landing Pages — 9 Regionalizadas</h2>
+            <div class="landing-pages">
+                <p class="pages-intro">Una landing page por estado/provincia. Cada una optimizada para búsquedas locales, testimonios de la región, comparativas vs. vivir en ese estado, y formulario de captura de leads.</p>
 
-                    <!-- Paso 4 -->
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-cyan-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">4</div>
-                        <div class="flex-1 bg-cyan-50 p-6 rounded-lg border-l-4 border-cyan-600">
-                            <h4 class="font-bold text-lg mb-2">On-Page Optimization</h4>
-                            <p class="text-gray-700 mb-3">Optimizar cada página: títulos, meta descriptions, H1/H2/H3, keyword density, internal links</p>
-                            <div class="text-sm text-gray-600 bg-white p-3 rounded">
-                                <strong>Deliverable:</strong> 50+ páginas optimizadas (homepage + todas las páginas existentes)
-                            </div>
-                        </div>
+                <div class="pages-grid">
+                    <!-- USA -->
+                    <div class="page-card">
+                        <div class="page-state">USA</div>
+                        <div class="page-name">California</div>
                     </div>
-
-                    <!-- Arrow -->
-                    <div class="flex justify-center text-3xl text-cyan-400">↓</div>
-
-                    <!-- Paso 5 -->
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-indigo-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">5</div>
-                        <div class="flex-1 bg-indigo-50 p-6 rounded-lg border-l-4 border-indigo-600">
-                            <h4 class="font-bold text-lg mb-2">High-Quality Content Creation</h4>
-                            <p class="text-gray-700 mb-3">30+ artículos premium (3,000-5,000 palabras) + guías + case studies + videos embebidos</p>
-                            <div class="text-sm text-gray-600 bg-white p-3 rounded">
-                                <strong>Deliverable:</strong> 30+ artículos bien investigados, multimedia, optimizados para keywords
-                            </div>
-                        </div>
+                    <div class="page-card">
+                        <div class="page-state">USA</div>
+                        <div class="page-name">Florida</div>
                     </div>
-
-                    <!-- Arrow -->
-                    <div class="flex justify-center text-3xl text-indigo-400">↓</div>
-
-                    <!-- Paso 6 -->
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-orange-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">6</div>
-                        <div class="flex-1 bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
-                            <h4 class="font-bold text-lg mb-2">Strategic Link Building</h4>
-                            <p class="text-gray-700 mb-3">Conseguir 50+ links de DA 40+ (directorios, guest posts, prensa, partnerships)</p>
-                            <div class="text-sm text-gray-600 bg-white p-3 rounded">
-                                <strong>Deliverable:</strong> 50+ backlinks de autoridad = aumento de domain authority de 20-30 puntos
-                            </div>
-                        </div>
+                    <div class="page-card">
+                        <div class="page-state">USA</div>
+                        <div class="page-name">Arizona</div>
                     </div>
-
-                    <!-- Arrow -->
-                    <div class="flex justify-center text-3xl text-orange-400">↓</div>
-
-                    <!-- Paso 7 -->
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-red-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">7</div>
-                        <div class="flex-1 bg-red-50 p-6 rounded-lg border-l-4 border-red-600">
-                            <h4 class="font-bold text-lg mb-2">Monitor, Test & Iterate</h4>
-                            <p class="text-gray-700 mb-3">Rankings weekly, tráfico daily, A/B testing de títulos/descriptions, adjustments continuos</p>
-                            <div class="text-sm text-gray-600 bg-white p-3 rounded">
-                                <strong>Deliverable:</strong> Dashboard en Google Search Console + GA4 + reportes semanales
-                            </div>
-                        </div>
+                    <div class="page-card">
+                        <div class="page-state">USA</div>
+                        <div class="page-name">Texas</div>
                     </div>
+                    <div class="page-card">
+                        <div class="page-state">USA</div>
+                        <div class="page-name">Colorado</div>
+                    </div>
+                    <!-- CANADA -->
+                    <div class="page-card">
+                        <div class="page-state">CANADA</div>
+                        <div class="page-name">Ontario</div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-state">CANADA</div>
+                        <div class="page-name">British Columbia</div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-state">CANADA</div>
+                        <div class="page-name">Alberta</div>
+                    </div>
+                    <div class="page-card">
+                        <div class="page-state">CANADA</div>
+                        <div class="page-name">Quebec</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Arrow -->
-                    <div class="flex justify-center text-3xl text-red-400">↓</div>
-
-                    <!-- Resultado -->
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">✓</div>
-                        <div class="flex-1 bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg border-l-4 border-green-600">
-                            <h4 class="font-bold text-lg mb-2 text-green-900">Resultado: TOP 3 en Google</h4>
-                            <p class="text-gray-700">Rankings #1-3 en 40+ keywords principales + tráfico orgánico estable de 5,000-10,000 visitas/mes</p>
+        <!-- BLOG STRATEGY -->
+        <section id="blog">
+            <h2>Estrategia de Blog</h2>
+            <div class="blog-strategy">
+                <div class="blog-intro">
+                    <div class="blog-text">
+                        <h3>Motor de Leads</h3>
+                        <p>30 artículos de blog a largo plazo (3,000-5,000 palabras cada uno), optimizados para búsquedas de jubilados. El blog es el motor orgánico principal para captura de leads.</p>
+                        <p>Contenido evergreen: guías de retiro, costo de vida, visas, seguros, comunidades, impuestos, etc.</p>
+                    </div>
+                    <div class="blog-stats">
+                        <div class="stat-box">
+                            <div class="stat-number">30</div>
+                            <div class="stat-label">Artículos</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Meses</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Keywords</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-number">20</div>
+                            <div class="stat-label">AEO Pages</div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Flujograma AEO -->
-            <div class="bg-white p-8 rounded-xl shadow-sm border-2 border-purple-200">
-                <h3 class="text-2xl font-bold mb-8 text-center">Flujo AEO: Aparecer en ChatGPT/Perplexity</h3>
-
-                <div class="space-y-6">
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-purple-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">1</div>
-                        <div class="flex-1 bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
-                            <h4 class="font-bold text-lg mb-2">Identificar Preguntas Que Hace La Gente</h4>
-                            <p class="text-gray-700">¿Qué preguntaría alguien a ChatGPT sobre jubilarse en México?</p>
-                            <p class="text-sm text-gray-600 mt-2">Ej: "How can I retire in Mexico on $2,000/month?" | "Best retirement communities in Riviera Maya for Americans"</p>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-center text-3xl text-purple-400">↓</div>
-
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-purple-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">2</div>
-                        <div class="flex-1 bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
-                            <h4 class="font-bold text-lg mb-2">Crear "Answer Pages" Conversacionales</h4>
-                            <p class="text-gray-700">Artículos que RESPONDEN esas preguntas con datos reales, no como SEO tradicional</p>
-                            <p class="text-sm text-gray-600 mt-2"><strong>Formato:</strong> Pregunta → Respuesta directa → Ejemplos → Guía paso-a-paso → Datos verificables</p>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-center text-3xl text-purple-400">↓</div>
-
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-purple-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">3</div>
-                        <div class="flex-1 bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
-                            <h4 class="font-bold text-lg mb-2">Optimizar para AI Models</h4>
-                            <p class="text-gray-700">Schema markup, FAQSchema, estructurar respuestas de forma clara, citar fuentes</p>
-                            <p class="text-sm text-gray-600 mt-2">AEOs indexan y citan contenido bien estructurado → si tu página está limpia, serás citado</p>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-center text-3xl text-purple-400">↓</div>
-
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-purple-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">4</div>
-                        <div class="flex-1 bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
-                            <h4 class="font-bold text-lg mb-2">Distribuir en Plataformas "Citation-Friendly"</h4>
-                            <p class="text-gray-700">LinkedIn, Medium, Quora, guest posts que AEOs indexan directamente</p>
-                            <p class="text-sm text-gray-600 mt-2">Objetivo: Que tu contenido sea citable → aparece en respuestas de ChatGPT con link back</p>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-center text-3xl text-purple-400">↓</div>
-
-                    <div class="flex gap-6 items-start">
-                        <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">✓</div>
-                        <div class="flex-1 bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-lg border-l-4 border-purple-600">
-                            <h4 class="font-bold text-lg mb-2 text-purple-900">Resultado: Citation en AEO</h4>
-                            <p class="text-gray-700">Cuando alguien pregunta a ChatGPT, tu página aparece como fuente → tráfico directo + autoridad</p>
-                        </div>
-                    </div>
+        <!-- LEAD RESULTS -->
+        <section id="results">
+            <h2>Proyección de Resultados</h2>
+            <div class="lead-funnel">
+                <div class="funnel-stage">
+                    <div class="funnel-number">Mes 1-2</div>
+                    <div class="funnel-bar"></div>
+                    <div class="funnel-desc">Preparación, 0 leads</div>
+                </div>
+                <div class="funnel-stage">
+                    <div class="funnel-number">Mes 3</div>
+                    <div class="funnel-bar"></div>
+                    <div class="funnel-desc">50-100 leads orgánicos</div>
+                </div>
+                <div class="funnel-stage">
+                    <div class="funnel-number">Mes 4-5</div>
+                    <div class="funnel-bar"></div>
+                    <div class="funnel-desc">150-200 leads orgánicos</div>
+                </div>
+                <div class="funnel-stage">
+                    <div class="funnel-number">Mes 6+</div>
+                    <div class="funnel-bar"></div>
+                    <div class="funnel-desc">300-450 leads orgánicos/mes</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Roadmap Detallado -->
-    <section class="py-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Roadmap de 6 Meses</h2>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="card-hover bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-600">
-                    <div class="bg-blue-100 text-blue-700 font-bold px-3 py-1 rounded-full inline-block mb-4">Mes 1-2</div>
-                    <h3 class="text-xl font-bold mb-4">Discovery & Research</h3>
-                    <ul class="text-gray-600 space-y-2 text-sm">
-                        <li>✓ Auditoría técnica completa</li>
-                        <li>✓ Keyword research (5,000+ búsquedas)</li>
-                        <li>✓ Análisis de competencia (50+ sitios)</li>
-                        <li>✓ Content gap analysis</li>
-                        <li>✓ Planificación estratégica</li>
-                        <li>✓ Setup de herramientas</li>
-                    </ul>
-                </div>
-
-                <div class="card-hover bg-white p-6 rounded-xl shadow-sm border-l-4 border-purple-600">
-                    <div class="bg-purple-100 text-purple-700 font-bold px-3 py-1 rounded-full inline-block mb-4">Mes 3-4</div>
-                    <h3 class="text-xl font-bold mb-4">Build & Optimize</h3>
-                    <ul class="text-gray-600 space-y-2 text-sm">
-                        <li>✓ Technical SEO fixes</li>
-                        <li>✓ On-page optimization (50+ pages)</li>
-                        <li>✓ Content creation inicia (15 artículos)</li>
-                        <li>✓ Link building outreach</li>
-                        <li>✓ Setup de tracking/analytics</li>
-                        <li>✓ Primera ola de AEO content</li>
-                    </ul>
-                </div>
-
-                <div class="card-hover bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-600">
-                    <div class="bg-green-100 text-green-700 font-bold px-3 py-1 rounded-full inline-block mb-4">Mes 5-6</div>
-                    <h3 class="text-xl font-bold mb-4">Scale & Monitor</h3>
-                    <ul class="text-gray-600 space-y-2 text-sm">
-                        <li>✓ Publicación 30+ artículos totales</li>
-                        <li>✓ 50+ links de autoridad conseguidos</li>
-                        <li>✓ Primeros rankings en Top 10</li>
-                        <li>✓ AEO content distribution</li>
-                        <li>✓ Optimización basada en data</li>
-                        <li>✓ Escala de lo que funciona</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="mt-12 bg-blue-50 p-8 rounded-xl border-2 border-blue-200">
-                <h3 class="text-2xl font-bold mb-6">Hitos de Éxito (KPIs por mes)</h3>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <h4 class="font-bold text-lg mb-4">Rankings</h4>
-                        <ul class="space-y-2 text-gray-700">
-                            <li><strong>Mes 2:</strong> Palabras clave rastreadas (baseline)</li>
-                            <li><strong>Mes 4:</strong> 10+ keywords en Top 20</li>
-                            <li><strong>Mes 6:</strong> 20+ keywords en Top 10, 5+ en Top 3</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-4">Tráfico Orgánico</h4>
-                        <ul class="space-y-2 text-gray-700">
-                            <li><strong>Mes 2:</strong> 500 visitas/mes baseline</li>
-                            <li><strong>Mes 4:</strong> 2,000-3,000 visitas/mes</li>
-                            <li><strong>Mes 6:</strong> 5,000-10,000 visitas/mes</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-4">Autoridad del Sitio</h4>
-                        <ul class="space-y-2 text-gray-700">
-                            <li><strong>Mes 2:</strong> Domain Authority: baseline</li>
-                            <li><strong>Mes 4:</strong> +15 puntos DA</li>
-                            <li><strong>Mes 6:</strong> +25-30 puntos DA</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-4">Backlinks</h4>
-                        <ul class="space-y-2 text-gray-700">
-                            <li><strong>Mes 2:</strong> Estrategia de links definida</li>
-                            <li><strong>Mes 4:</strong> 20+ links conseguidos</li>
-                            <li><strong>Mes 6:</strong> 50+ links de DA 40+</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stack Técnico & Herramientas -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Stack Técnico Recomendado</h2>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-sm">
-                    <h3 class="text-2xl font-bold mb-6">Herramientas de SEO</h3>
-                    <ul class="space-y-4">
-                        <li class="flex gap-3">
-                            <span class="text-2xl">🔍</span>
-                            <div>
-                                <p class="font-bold">Google Search Console</p>
-                                <p class="text-sm text-gray-600">Rankings, impresiones, clicks, queries, coverage issues</p>
-                            </div>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-2xl">📊</span>
-                            <div>
-                                <p class="font-bold">Ahrefs / SEMrush</p>
-                                <p class="text-sm text-gray-600">Keyword tracking, backlinks, competencia análisis</p>
-                            </div>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-2xl">⚡</span>
-                            <div>
-                                <p class="font-bold">Google PageSpeed Insights</p>
-                                <p class="text-sm text-gray-600">Core Web Vitals, velocidad, optimización</p>
-                            </div>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-2xl">🎯</span>
-                            <div>
-                                <p class="font-bold">Google Analytics 4</p>
-                                <p class="text-sm text-gray-600">Tráfico, comportamiento, conversiones, eventos</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl shadow-sm">
-                    <h3 class="text-2xl font-bold mb-6">Herramientas de Contenido & AEO</h3>
-                    <ul class="space-y-4">
-                        <li class="flex gap-3">
-                            <span class="text-2xl">✍️</span>
-                            <div>
-                                <p class="font-bold">ChatGPT / Claude API</p>
-                                <p class="text-sm text-gray-600">Generación de content outlines + ideation</p>
-                            </div>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-2xl">📝</span>
-                            <div>
-                                <p class="font-bold">Surfer SEO / Jasper</p>
-                                <p class="text-sm text-gray-600">Content optimization, SERP analysis</p>
-                            </div>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-2xl">🔗</span>
-                            <div>
-                                <p class="font-bold">Outreach Tools (Pitchbox, Hunter.io)</p>
-                                <p class="text-sm text-gray-600">Link building outreach automation</p>
-                            </div>
-                        </li>
-                        <li class="flex gap-3">
-                            <span class="text-2xl">📋</span>
-                            <div>
-                                <p class="font-bold">Google Sheets + Data Studio</p>
-                                <p class="text-sm text-gray-600">Tracking de keywords, dashboards, reportes</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="mt-8 bg-amber-50 border-l-4 border-amber-600 p-6 rounded-lg">
-                <p class="font-bold text-amber-900 mb-2">💡 Nota técnica:</p>
-                <p class="text-gray-700">Todo esto está integrado en una plataforma unificada de reporting que actualiza diariamente. No necesitas entrar a 10 herramientas — hay un dashboard central que muestra rankings, tráfico, links, conversiones, todo en tiempo real.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Matriz de Competencia -->
-    <section class="py-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">Análisis Competitivo: Top 3 vs. CMK</h2>
-
-            <div class="overflow-x-auto bg-white rounded-xl shadow-sm">
-                <table class="w-full border-collapse">
-                    <thead>
-                        <tr class="bg-gray-100 border-b-2 border-gray-300">
-                            <th class="p-4 text-left font-bold">Métrica</th>
-                            <th class="p-4 text-left font-bold">Competidor #1</th>
-                            <th class="p-4 text-left font-bold">Competidor #2</th>
-                            <th class="p-4 text-left font-bold">Competidor #3</th>
-                            <th class="p-4 text-left font-bold text-blue-600">Ciudad Maya Koba (HOY)</th>
-                            <th class="p-4 text-left font-bold text-green-600">CMK (Mes 6)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b">
-                            <td class="p-4 font-bold">Domain Authority</td>
-                            <td class="p-4">45</td>
-                            <td class="p-4">42</td>
-                            <td class="p-4">38</td>
-                            <td class="p-4 text-blue-600">22</td>
-                            <td class="p-4 text-green-600">47-52 ✓</td>
-                        </tr>
-                        <tr class="border-b">
-                            <td class="p-4 font-bold">Backlinks (DA 40+)</td>
-                            <td class="p-4">150</td>
-                            <td class="p-4">120</td>
-                            <td class="p-4">95</td>
-                            <td class="p-4 text-blue-600">5</td>
-                            <td class="p-4 text-green-600">50+ ✓</td>
-                        </tr>
-                        <tr class="border-b">
-                            <td class="p-4 font-bold">Artículos publicados</td>
-                            <td class="p-4">180</td>
-                            <td class="p-4">150</td>
-                            <td class="p-4">120</td>
-                            <td class="p-4 text-blue-600">12</td>
-                            <td class="p-4 text-green-600">50+ ✓</td>
-                        </tr>
-                        <tr class="border-b">
-                            <td class="p-4 font-bold">Keywords Top 10</td>
-                            <td class="p-4">180</td>
-                            <td class="p-4">145</td>
-                            <td class="p-4">110</td>
-                            <td class="p-4 text-blue-600">0</td>
-                            <td class="p-4 text-green-600">20+ ✓</td>
-                        </tr>
-                        <tr class="border-b">
-                            <td class="p-4 font-bold">Keywords Top 3</td>
-                            <td class="p-4">45</td>
-                            <td class="p-4">35</td>
-                            <td class="p-4">25</td>
-                            <td class="p-4 text-blue-600">0</td>
-                            <td class="p-4 text-green-600">5-10 ✓</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4 font-bold">Tráfico orgánico/mes</td>
-                            <td class="p-4">25,000</td>
-                            <td class="p-4">18,000</td>
-                            <td class="p-4">12,000</td>
-                            <td class="p-4 text-blue-600">400</td>
-                            <td class="p-4 text-green-600">5,000-10,000 ✓</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="mt-8 bg-green-50 border-l-4 border-green-600 p-6 rounded-lg">
-                <p class="font-bold text-green-900 mb-3">✓ Estrategia de "Catch-up":</p>
-                <p class="text-gray-700 mb-3">En 6 meses, Ciudad Maya Koba alcanza Domain Authority similar a Competidor #3 y #2. No necesitamos superar a TODOS — necesitamos estar en Top 3 para las keywords más importantes (con mayores búsquedas + conversión).</p>
-                <p class="text-sm text-gray-600"><strong>Enfoque:</strong> No competir en TODO. Dominar 40+ keywords específicas de nuestro nicho (jubilados USA/Canada) donde somos más relevantes que competidores genéricos.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">¿Listo para Ser #1 en Google?</h2>
-            <p class="text-xl text-blue-100 mb-8">6 meses de ejecución estratégica = Rankings Top 3 + Dominio de mercado de jubilados USA/Canada</p>
-
-            <div class="bg-white/10 backdrop-blur p-8 rounded-xl mb-8 border border-white/20">
-                <h3 class="text-2xl font-bold mb-4">Cómo Funciona:</h3>
-                <ol class="text-lg text-blue-50 space-y-3 text-left max-w-2xl mx-auto">
-                    <li><span class="font-bold">1.</span> Revisas estrategia completa (flujogramas + roadmap)</li>
-                    <li><span class="font-bold">2.</span> Llamada de alineación: validamos approach + timeline</li>
-                    <li><span class="font-bold">3.</span> Definimos scope exacto + presupuesto adaptado a tu capacidad</li>
-                    <li><span class="font-bold">4.</span> Kickoff: Semana 1 = Research + Discovery + Setup</li>
-                    <li><span class="font-bold">5.</span> Ejecución 6 meses: Tracking semanal + reportes mensuales</li>
-                </ol>
-            </div>
-
-            <div class="bg-gradient-to-r from-cyan-400 to-blue-400 p-0.5 rounded-lg mb-8">
-                <div class="bg-blue-900 p-6 rounded-lg">
-                    <p class="text-blue-100 text-sm mb-2">Próximo paso inmediato</p>
-                    <p class="text-2xl font-bold">Revisión profunda + Llamada estratégica</p>
-                    <p class="text-blue-200 text-sm mt-2">30 min | Sin compromiso | Discutimos presupuesto adaptado</p>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="mailto:contacto@ciudadmayakoba.com" class="bg-white text-blue-900 font-bold px-8 py-4 rounded-lg hover:bg-blue-50 transition">
-                    📧 Enviar Propuesta
-                </a>
-                <a href="tel:+525551234567" class="border-2 border-white text-white font-bold px-8 py-4 rounded-lg hover:bg-white/10 transition">
-                    📞 Agendar Llamada (30 min)
-                </a>
-            </div>
-
-            <p class="text-blue-200 text-sm mt-8">Propuesta técnica detallada — sin compromiso de presupuesto</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-12">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p>Propuesta preparada por <span class="font-bold text-white">Victor IA</span> | Especialistas en posicionamiento digital para mercados de lujo</p>
-            <p class="mt-2 text-sm">© 2024 | Confidencial — Propuesta personalizada para Ciudad Maya Koba</p>
-        </div>
+    <footer>
+        <p>Ciudad Maya Koba — Strategic Roadmap 2026 | Propuesta de generación de leads orgánicos</p>
     </footer>
 
+    <!-- THREE.JS BACKGROUND -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Smooth scrolling
+        // Three.js Background Animation
+        const canvas = document.getElementById('canvas-bg');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0xffffff, 0);
+        camera.position.z = 50;
+
+        // Create lines
+        const geometry = new THREE.BufferGeometry();
+        const positions = [];
+
+        for (let i = 0; i < 100; i++) {
+            const x = (Math.random() - 0.5) * 200;
+            const y = (Math.random() - 0.5) * 200;
+            const z = (Math.random() - 0.5) * 200;
+            positions.push(x, y, z);
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(positions), 3));
+        const material = new THREE.LineBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.15 });
+        const lines = new THREE.LineSegments(geometry, material);
+        scene.add(lines);
+
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+            lines.rotation.x += 0.0001;
+            lines.rotation.y += 0.0002;
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             });
         });
