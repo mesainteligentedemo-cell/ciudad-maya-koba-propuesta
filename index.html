@@ -611,35 +611,138 @@
             font-size: 13px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             section {
-                padding: 60px 30px;
-            }
-
-            header {
-                padding: 0 30px;
-            }
-
-            nav {
-                gap: 20px;
+                padding: 80px 40px;
             }
 
             .hero h1 {
-                font-size: 42px;
+                font-size: 48px;
+            }
+
+            .timeline-items {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+
+            nav {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 24px;
+            }
+
+            header {
+                padding: 0 24px;
+                height: 70px;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            nav {
+                gap: 16px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: calc(100vh - 70px);
+            }
+
+            .hero h1 {
+                font-size: 36px;
+                margin-bottom: 40px;
+            }
+
+            .executive-summary {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .summary-content h3 {
+                font-size: 22px;
+            }
+
+            .summary-content p,
+            .summary-list {
+                font-size: 13px;
+            }
+
+            h2 {
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
+
+            h3 {
+                font-size: 20px;
             }
 
             .pillars-grid,
             .landings-grid,
             .aeo-grid {
                 grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .pillar-card,
+            .landing-card,
+            .aeo-card {
+                padding: 28px;
+            }
+
+            .pillar-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .pillar-title {
+                font-size: 20px;
+            }
+
+            .pillar-details {
+                font-size: 12px;
+            }
+
+            .landing-region,
+            .landing-title {
+                font-size: 16px;
             }
 
             .timeline-items {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
 
-            .executive-summary {
-                grid-template-columns: 1fr;
+            .timeline-month {
+                font-size: 11px;
+            }
+
+            .timeline-content {
+                font-size: 12px;
+                min-height: auto;
+            }
+
+            .funnel-stage {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .funnel-number {
+                min-width: auto;
+                font-size: 12px;
+            }
+
+            .funnel-desc {
+                min-width: auto;
+                font-size: 12px;
             }
 
             .considerations-grid {
@@ -647,8 +750,180 @@
                 gap: 30px;
             }
 
+            .consideration-block h3 {
+                font-size: 16px;
+            }
+
+            .consideration-list {
+                font-size: 12px;
+                line-height: 1.7;
+            }
+
+            .philosophy-box {
+                padding: 24px;
+            }
+
+            .philosophy-box p {
+                font-size: 12px;
+            }
+
+            .landings-intro,
+            .aeo-intro {
+                padding: 28px;
+            }
+
+            footer {
+                padding: 40px 24px;
+                font-size: 11px;
+            }
+
+            .fade-in-up,
+            .fade-in-left,
+            .fade-in-right {
+                transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 50px 16px;
+            }
+
+            header {
+                padding: 0 16px;
+                height: 60px;
+            }
+
+            .logo {
+                font-size: 14px;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .executive-summary {
+                gap: 30px;
+            }
+
+            .summary-label {
+                font-size: 10px;
+            }
+
+            .summary-content h3 {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
             h2 {
-                font-size: 36px;
+                font-size: 26px;
+                margin-bottom: 30px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            .pillar-card,
+            .landing-card,
+            .aeo-card {
+                padding: 20px;
+            }
+
+            .pillar-icon {
+                width: 45px;
+                height: 45px;
+                margin-bottom: 16px;
+            }
+
+            .pillar-title {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+
+            .pillar-percentage {
+                font-size: 10px;
+                padding: 3px 8px;
+                margin-bottom: 16px;
+            }
+
+            .pillar-description,
+            .pillar-details {
+                font-size: 11px;
+            }
+
+            .pillar-details li {
+                margin-bottom: 6px;
+            }
+
+            .landing-region {
+                font-size: 10px;
+                margin-bottom: 8px;
+            }
+
+            .landing-title {
+                font-size: 18px;
+            }
+
+            .timeline-items {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .timeline-month {
+                font-size: 10px;
+            }
+
+            .timeline-dot {
+                width: 10px;
+                height: 10px;
+                margin-bottom: 12px;
+            }
+
+            .timeline-item:hover .timeline-dot {
+                width: 14px;
+                height: 14px;
+            }
+
+            .timeline-content {
+                font-size: 11px;
+            }
+
+            .consideration-block h3 {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+
+            .consideration-list {
+                font-size: 11px;
+                line-height: 1.6;
+            }
+
+            .consideration-list li {
+                margin-bottom: 10px;
+            }
+
+            .philosophy-box {
+                padding: 20px;
+            }
+
+            .philosophy-box p {
+                font-size: 11px;
+                line-height: 1.7;
+            }
+
+            footer {
+                padding: 30px 16px;
+                font-size: 10px;
             }
         }
     </style>
