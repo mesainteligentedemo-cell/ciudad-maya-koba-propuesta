@@ -30,6 +30,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             letter-spacing: -0.3px;
+            overflow-x: hidden;
         }
 
         #canvas-bg {
@@ -236,6 +237,8 @@
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .pillar-card {
@@ -331,6 +334,8 @@
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .landing-card {
@@ -408,6 +413,8 @@
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .aeo-card {
@@ -785,13 +792,28 @@
         }
 
         @media (max-width: 480px) {
+            * {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
             section {
                 padding: 50px 16px;
+                width: 100vw;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+
+            main {
+                width: 100%;
+                overflow: hidden;
             }
 
             header {
                 padding: 0 16px;
                 height: 60px;
+                width: 100%;
             }
 
             .logo {
@@ -800,19 +822,31 @@
 
             nav {
                 gap: 12px;
+                flex-wrap: wrap;
             }
 
             nav a {
                 font-size: 11px;
+                white-space: nowrap;
+            }
+
+            .hero {
+                min-height: calc(100vh - 60px);
             }
 
             .hero h1 {
                 font-size: 28px;
                 margin-bottom: 30px;
+                line-height: 1.2;
             }
 
             .executive-summary {
                 gap: 30px;
+                width: 100%;
+            }
+
+            .summary-block {
+                width: 100%;
             }
 
             .summary-label {
@@ -824,19 +858,37 @@
                 margin-bottom: 12px;
             }
 
+            .summary-content p,
+            .summary-list {
+                font-size: 13px;
+            }
+
             h2 {
                 font-size: 26px;
                 margin-bottom: 30px;
+                word-break: break-word;
             }
 
             h3 {
                 font-size: 18px;
             }
 
+            .pillars-grid,
+            .landings-grid,
+            .aeo-grid {
+                grid-template-columns: 1fr;
+                width: 100%;
+                gap: 20px;
+            }
+
             .pillar-card,
             .landing-card,
             .aeo-card {
                 padding: 20px;
+                width: 100%;
+                box-sizing: border-box;
+                overflow: hidden;
+                word-wrap: break-word;
             }
 
             .pillar-icon {
@@ -854,15 +906,22 @@
                 font-size: 10px;
                 padding: 3px 8px;
                 margin-bottom: 16px;
+                display: inline-block;
             }
 
             .pillar-description,
             .pillar-details {
-                font-size: 11px;
+                font-size: 12px;
+            }
+
+            .pillar-details {
+                margin: 0;
+                padding-left: 16px;
             }
 
             .pillar-details li {
                 margin-bottom: 6px;
+                word-break: break-word;
             }
 
             .landing-region {
@@ -874,56 +933,132 @@
                 font-size: 18px;
             }
 
+            .landings-intro,
+            .aeo-intro {
+                padding: 20px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .timeline-container {
+                width: 100%;
+                overflow: hidden;
+            }
+
             .timeline-items {
                 grid-template-columns: 1fr;
                 gap: 16px;
+                width: 100%;
+            }
+
+            .timeline-line {
+                display: none;
+            }
+
+            .timeline-item {
+                padding: 16px;
+                border: 1px solid var(--border-gray);
+                background: var(--light-gray);
+                text-align: left;
             }
 
             .timeline-month {
-                font-size: 10px;
+                font-size: 11px;
             }
 
             .timeline-dot {
                 width: 10px;
                 height: 10px;
-                margin-bottom: 12px;
-            }
-
-            .timeline-item:hover .timeline-dot {
-                width: 14px;
-                height: 14px;
+                margin: 0 0 12px 0;
             }
 
             .timeline-content {
-                font-size: 11px;
+                font-size: 12px;
+            }
+
+            .lead-funnel {
+                width: 100%;
+            }
+
+            .funnel-stage {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .funnel-number {
+                font-size: 12px;
+                min-width: auto;
+            }
+
+            .funnel-bar {
+                width: 100%;
+            }
+
+            .funnel-desc {
+                font-size: 12px;
+                min-width: auto;
+                width: 100%;
+            }
+
+            .considerations-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                width: 100%;
+            }
+
+            .consideration-block {
+                width: 100%;
             }
 
             .consideration-block h3 {
-                font-size: 15px;
+                font-size: 16px;
                 margin-bottom: 12px;
             }
 
             .consideration-list {
-                font-size: 11px;
-                line-height: 1.6;
+                font-size: 12px;
+                line-height: 1.7;
+                margin: 0;
+                padding-left: 16px;
             }
 
             .consideration-list li {
                 margin-bottom: 10px;
+                word-break: break-word;
             }
 
             .philosophy-box {
                 padding: 20px;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             .philosophy-box p {
-                font-size: 11px;
+                font-size: 12px;
                 line-height: 1.7;
             }
 
             footer {
                 padding: 30px 16px;
                 font-size: 10px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .fade-in-up,
+            .fade-in-left,
+            .fade-in-right {
+                transition: none;
+                animation: none;
+            }
+
+            .fade-in-up.visible,
+            .fade-in-left.visible,
+            .fade-in-right.visible {
+                opacity: 1;
+                transform: none;
             }
         }
     </style>
